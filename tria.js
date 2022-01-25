@@ -29,7 +29,6 @@ while (!(acabar)){
     
     MostraIntro();
     pregunta = Triar();
-
     while (!(resposta)){
         if (RespostaNula(ConvMinus(pregunta))){
             pregunta = readlineSync.question(noEntenc);
