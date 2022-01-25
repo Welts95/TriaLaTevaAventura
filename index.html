@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Suez+One&family=Trirong:wght@300&display=swap" rel="stylesheet">
+        <title>Tria La Teva Aventura</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>TRIA LA TEVA AVENTURA!<br></h1>
+                <h2>Llegeix i pàssa-t'ho bé!</h2>
+            </header>
+            <main>
+                <div class="containertext">
+                    <div class="historia">
+                        <section class="text">continuem</section>
+                    </div>
+                    <div class="flexcontainer">
+                        <div class="flexcontainerfill">
+                            <button onclick="ferNord()">NORD</button>
+                        </div>
+                        <div class="flexcontainerfill">
+                            <button onclick="ferSud()">SUD</button>
+                        </div>
+                        <div class="flexcontainerfill">
+                            <button>EST</button>
+                        </div>
+                        <div class="flexcontainerfill">
+                            <button>OEST</button>
+                        </div>
+                    </div>
+                </div>
+                </section> 
+            </main>
+            <footer class="footer">
+                <p>Sembla que has arribat al final... de la pàgina<br><br>Fet per Gerard Hueltes per a Gerard Hueltes.</p>
+                </ul>
+            </footer>
+        </div>
+        <script>
+                    
+            let historia = [
+                {text:'benvingut'},
+                {text:'continuem'}
+            ]
+            let pagina = 0;
+            let text = document.querySelector('.text');
+            text.textContent = historia[pagina].text;
+
+            function ferNord() {
+                pagina = pagina + 1;
+                text.textContent = historia[pagina].text;
+            }
+            function ferSud() {
+                pagina = pagina - 1;
+                text.textContent = historia[pagina].text;
+            }
+        
+
+
+        </script>
+    </body>
+</html>
