@@ -93,8 +93,9 @@ div {
     font-family: 'Trirong', serif;
     background-color: bisque;
     color: black;
-    border: 3px solid #330f19;
-    border-radius: 0 15px 0 15px ;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #330f19;
     padding: 16px 15px;
     text-align: center;
     text-decoration: none;
@@ -103,10 +104,15 @@ div {
     transition-duration: 0.4s;
     cursor: pointer;
     font-weight: bolder;
-  }
+}
 button:hover {
     background-color: #330f19;
     color: white;
+}
+button:active {
+    background-color: bisque;
+    box-shadow: 0 5px #330f19;
+    transform: translateY(5px);
 }
 .contfill {
     position: relative;
