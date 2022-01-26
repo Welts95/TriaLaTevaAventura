@@ -106,8 +106,7 @@ div {
     font-weight: bolder;
 }
 button:hover {
-    background-color: #330f19;
-    color: white;
+    background-color: rgb(194, 172, 146);
 }
 button:active {
     background-color: bisque;
