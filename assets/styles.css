@@ -53,7 +53,7 @@ h1 {
     font-size: 28px;
 }
 .contjugador {
-    background-image: url(./images/RecuadroJugador.png);
+    background-image: url('./images/RecuadroJugador.png');
     background-size: 100% 100%;
     border-radius: 10px 10px 10px 10px;
     align-self: flex-start;
@@ -61,7 +61,7 @@ h1 {
     height: 100px;
 }
 .contruta {
-    background-image: url(./images/papelruta.png);
+    background-image: url('./images/papelruta.png');
     background-size: 100% 100%;
     align-self: flex-end;
     flex-direction: row-reverse;
