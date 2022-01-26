@@ -21,22 +21,36 @@
                         <section class="text"></section>
                         <section class="ubicacio"></section>
                     </div>
-                    <div class="flexcontainer">
-                        <div id="btnNord" class="flexcontainerfill">
-                            <button onclick="ferNord()">NORD</button>
+                    <div id="lateral" style="display:none" class="contlateral">
+                        <div class="contjugador">
+                            <h3>Aventurer:</h3>
+                            <section class="nomAventurer"></section>
                         </div>
-                        <div id="btnSud" class="flexcontainerfill">
-                            <button onclick="ferSud()">SUD</button>
+                        <div class="contruta">
+                            <h3>Ruta:</h3>
+                            <section class="ruta"></section>
                         </div>
-                        <div id="btnEst" class="flexcontainerfill">
-                            <button onclick="ferEst()">EST</button>
-                        </div>
-                        <div id="btnOest" class="flexcontainerfill">
-                            <button onclick="ferOest()">OEST</button>
-                        </div>
-                        <div id="btnFinal" style="display: none" id class="flexcontainerfill">
-                            <button onclick="final()">ACABAR</button>
-                        </div>
+                    </div>
+                    
+                </div>
+                <div class="flexcontainer">
+                    <div id="btnComencar" class="flexcontainerfill">
+                        <button onclick="començar()">COMENÇAR</button>
+                    </div>
+                    <div id="btnNord" style="display: none" class="flexcontainerfill">
+                        <button onclick="ferNord()">NORD</button>
+                    </div>
+                    <div id="btnSud" style="display: none" class="flexcontainerfill">
+                        <button onclick="ferSud()">SUD</button>
+                    </div>
+                    <div id="btnEst" style="display: none" class="flexcontainerfill">
+                        <button onclick="ferEst()">EST</button>
+                    </div>
+                    <div id="btnOest" style="display: none" class="flexcontainerfill">
+                        <button onclick="ferOest()">OEST</button>
+                    </div>
+                    <div id="btnFinal" style="display: none" id class="flexcontainerfill">
+                        <button onclick="final()">ACABAR</button>
                     </div>
                 </div>
             </main>
@@ -47,8 +61,8 @@
         </div>
         <script>
             const localitzacions = [
-                        {text: 'Benvingut adventurer! Has arribat a Hyrule! Un regne gobernat per un rei en el que hi mana la pau... Fins que un dia... Un antic èsser maligne es va aconseguir alliberar de la seva pressó i va sembrar el caos per allà on passava... Ara recau en tu adventurer la responsabilitat de derrotar al èsser maligne i que torni la pau a Hyrule...Estàs llest per empendre aquesta aventura? (Prem el botó NORD per començar)', nord: 1, sud: null, est: null, oest: null, ubiActual:"INTRODUCCIÓ"},
-                        {text: `T'has adentrat al BOSC de LATOAN, bosc que connecta la regió de Farone amb Latoan, el teu poble natal. Al NORD hi ha el BOSC de FARONE. On vols anar?`, nord: 2, sud: 0, est: null, oest: null, ubiActual: "BOSC de LATOAN"},
+                        {text: 'Benvingut aventurer! Has arribat a Hyrule! Un regne gobernat per un rei en el que hi mana la pau... Fins que un dia... Un antic èsser maligne es va aconseguir alliberar de la seva pressó i va sembrar el caos per allà on passava... Ara recau en tu adventurer la responsabilitat de derrotar al èsser maligne i que torni la pau a Hyrule...Estàs llest per empendre aquesta aventura?', nord: 1, sud: null, est: null, oest: null, ubiActual:"INTRODUCCIÓ"},
+                        {text: `T'has adentrat al BOSC de LATOAN, bosc que connecta la regió de Farone amb Latoan, el teu poble natal. Al NORD hi ha el BOSC de FARONE. On vols anar?`, nord: 2, sud: null, est: null, oest: null, ubiActual: "BOSC de LATOAN"},
                         {text: 'Desprès de caminar una mica has aconseguit arribar al BOSC de FARONE. Al NORD hi ha el PRAT de FARONE, al SUD hi ha el BOSC de LATOAN, al OEST hi ha KAKARIKO i al EST hi ha el DESERT de GERUDO. On vols anar?', nord: 3, sud: 1, oest: 4, est: 5, ubiActual: "BOSC de FARONE"},
                         {text: `Desprès d'una llarga caminata i enfrentar-te a uns quants monstres que no et volien fer res de bó, has arribat al PRAT de FARONE. Al NORD hi ha la CIUTADELA, al SUD hi ha el BOSC de Farone. On vols anar?`, nord: 8, sud: 2, est: null, oest: null, ubiActual: "PRAT de FARONE"},
                         {text: 'Desprès de molt caminar has arribat al POBLE de KAKARIKO, al NORD hi ha la MONTANYA de la MORT i al EST hi ha el BOSC de FARONE. On vols anar?', nord: 6, sud: null, est: 2, oest: null, ubiActual: "KAKARIKO"},
@@ -62,11 +76,40 @@
             let cardinal = 0;
             let text = document.querySelector('.text');
             let ubi = document.querySelector('.ubicacio');
+            let nomjugador = document.querySelector('.nomAventurer');
+            let ruta = document.querySelector('.ruta');
+            let rutaseguida = [];
             assignarText();
-            
+
+            function començar(){
+                preguntarnom();
+                iniciarButons();
+                cardinal = 1;
+                text.textContent = localitzacions[cardinal].text;
+                ubi.textContent = localitzacions[cardinal].ubiActual;
+                rutaseguida = [localitzacions[cardinal].ubiActual];
+                ruta.textContent = rutaseguida;
+            }
+            function iniciarButons (){
+                document.getElementById('lateral').style.display = 'flex';
+                document.getElementById('btnComencar').style.display = 'none';
+                document.getElementById('btnNord').style.display = 'inline';
+                document.getElementById('btnSud').style.display = 'inline';
+                document.getElementById('btnEst').style.display = 'inline';
+                document.getElementById('btnOest').style.display = 'inline';
+            }
+            function preguntarnom(){
+                let nom = window.prompt("Quin és el teu nom adventurer?");
+                if (nom!=="" && nom!==null) {
+                    nomjugador.textContent = nom;
+                } else preguntarnom();
+            }
             function assignarText(){
                 text.textContent = localitzacions[cardinal].text;
                 ubi.textContent = localitzacions[cardinal].ubiActual;
+                rutaseguida.push(localitzacions[cardinal].ubiActual);
+                console.log(rutaseguida);
+                ruta.textContent = rutaseguida;
             }
             function ferNord() {
                 if (localitzacions[cardinal].nord!==null){
@@ -91,6 +134,7 @@
                 if (localitzacions[cardinal].oest!==null){
                     cardinal = localitzacions[cardinal].oest;
                     assignarText();
+                    assignarRuta();
                 }
             }
             function ComprobarFinal (){
@@ -105,11 +149,9 @@
             function final(){
                 text.textContent = localitzacions[0].text;
                 ubi.textContent = localitzacions[0].ubiActual;
-                document.getElementById('btnNord').style.display = 'inline';
-                document.getElementById('btnSud').style.display = 'inline';
-                document.getElementById('btnEst').style.display = 'inline';
-                document.getElementById('btnOest').style.display = 'inline';
+                document.getElementById('btnComencar').style.display = 'inline';
                 document.getElementById('btnFinal').style.display = 'none';
+                document.getElementById('lateral').style.display = 'none';
             }
         </script>
     </body>
